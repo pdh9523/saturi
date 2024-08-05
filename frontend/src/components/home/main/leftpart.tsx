@@ -1,21 +1,15 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import ButtonBase from '@mui/material/ButtonBase';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
+import { Box, Card, ButtonBase, Typography } from '@mui/material';
+import { LeftPartProps } from "@/utils/props";
 
-interface LeftPartProps {
-  middlePosition: number;
-  moveDirection: string;
-  selectedRegion: string;
-}
 
 export default function LeftPart({ middlePosition, moveDirection, selectedRegion }: LeftPartProps) {
   const router = useRouter();
 
+  //TODO: middlePosition 검사 변경
   useEffect(() => {
-    if (middlePosition === 2) {
+    if (middlePosition === 3) {
       navigator.mediaDevices.enumerateDevices()
         .then(devices => {
           const audioInputDevices = devices.filter(device => device.kind === 'audioinput');
@@ -69,7 +63,7 @@ export default function LeftPart({ middlePosition, moveDirection, selectedRegion
   }
 
   return (
-    <div
+    <Box
       className="leftpart"
       style={{
         zIndex: (() => {
@@ -111,6 +105,6 @@ export default function LeftPart({ middlePosition, moveDirection, selectedRegion
           </ButtonBase>
         </Card>
       </Box>
-    </div>
+    </Box>
   );
 }
